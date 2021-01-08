@@ -144,9 +144,7 @@ module Sprockets
 
   # Babel, TheFuture™ is now
   require 'sprockets/babel_processor'
-  register_mime_type 'application/ecmascript-6', extensions: ['.es6, .js'], charset: :unicode
-  register_transformer 'application/ecmascript-6', 'application/javascript', BabelProcessor
-  register_preprocessor 'application/ecmascript-6', DirectiveProcessor.new(comments: ["//", ["/*", "*/"]])
+  register_preprocessor 'application/javascript', BabelProcessor
 
   # Mmm, CoffeeScript
   require 'sprockets/coffee_script_processor'
@@ -225,5 +223,5 @@ module Sprockets
   register_preprocessor 'application/javascript', Preprocessors::DefaultSourceMap.new
 
   register_bundle_metadata_reducer 'text/css',               :map, proc { |input| { "version" => 3, "file" => PathUtils.split_subpath(input[:load_path], input[:filename]), "sections" => [] } }, SourceMapUtils.method(:concat_source_maps)
-  register_bundle_metadata_reducer 'application/javascript', :map, proc { |input| { "version" => 3, "file" => PathUtils.split_subpath(input[:load_path], input[:filename]), "sections" => [] } }, SourceMapUtils.method(:concat_source_maps)
+  # register_bundle_metadata_reducer 'application/javascript', :map, proc { |input| { "version" => 3, "file" => PathUtils.split_subpath(input[:load_path], input[:filename]), "sections" => [] } }, SourceMapUtils.method(:concat_source_maps)
 end
