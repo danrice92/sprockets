@@ -144,7 +144,7 @@ module Sprockets
 
   # Babel, TheFuture™ is now
   require 'sprockets/babel_processor'
-  register_mime_type 'application/ecmascript-6', extensions: ['.es6'], charset: :unicode
+  register_mime_type 'application/ecmascript-6', extensions: ['.es6, .js'], charset: :unicode
   register_transformer 'application/ecmascript-6', 'application/javascript', BabelProcessor
   register_preprocessor 'application/ecmascript-6', DirectiveProcessor.new(comments: ["//", ["/*", "*/"]])
 
